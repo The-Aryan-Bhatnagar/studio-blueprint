@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { Mic2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 const ArtistLogin = () => {
   const [email, setEmail] = useState("");
@@ -13,13 +14,25 @@ const ArtistLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const { signIn } = useAuth();
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Artist Login Successful",
-      description: "Welcome to your dashboard!",
-    });
-    navigate("/artist/dashboard");
+    const { error } = await signIn(email, password);
+    
+    if (error) {
+      toast({
+        title: "Login Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Artist Login Successful",
+        description: "Welcome to your dashboard!",
+      });
+      navigate("/artist/dashboard");
+    }
   };
 
   return (

@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PlayerProvider } from "./contexts/PlayerContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Discover from "./pages/Discover";
@@ -27,29 +28,31 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <BrowserRouter>
-        <PlayerProvider>
-          <Toaster />
-          <Sonner />
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/discover" element={<Discover />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/library" element={<Library />} />
-              <Route path="/community" element={<Community />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/artist" element={<ArtistProfile />} />
-              <Route path="/artist/dashboard" element={<ArtistDashboard />} />
-              <Route path="/auth/login" element={<Login />} />
-              <Route path="/auth/signup" element={<Signup />} />
-              <Route path="/artist/login" element={<ArtistLogin />} />
-              <Route path="/artist/signup" element={<ArtistSignup />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Layout>
-        </PlayerProvider>
+        <AuthProvider>
+          <PlayerProvider>
+            <Toaster />
+            <Sonner />
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/discover" element={<Discover />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/library" element={<Library />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/artist" element={<ArtistProfile />} />
+                <Route path="/artist/dashboard" element={<ArtistDashboard />} />
+                <Route path="/auth/login" element={<Login />} />
+                <Route path="/auth/signup" element={<Signup />} />
+                <Route path="/artist/login" element={<ArtistLogin />} />
+                <Route path="/artist/signup" element={<ArtistSignup />} />
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          </PlayerProvider>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
