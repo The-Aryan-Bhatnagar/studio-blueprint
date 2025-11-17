@@ -51,6 +51,11 @@ const Header = () => {
         />
       </div>
 
+      {/* GreenBox Brand Name */}
+      <div className="flex-1 flex justify-center">
+        <h1 className="text-2xl font-bold text-foreground">GreenBox</h1>
+      </div>
+
       {/* Navigation Items */}
       <nav className="flex items-center gap-2">
         {navItems.map((item) => (
