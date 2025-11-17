@@ -14,16 +14,217 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      artist_profiles: {
+        Row: {
+          apple_music_url: string | null
+          avatar_url: string | null
+          bio: string | null
+          cover_image_url: string | null
+          created_at: string
+          id: string
+          instagram_url: string | null
+          spotify_url: string | null
+          stage_name: string
+          total_followers: number | null
+          total_subscribers: number | null
+          updated_at: string
+          user_id: string
+          youtube_url: string | null
+        }
+        Insert: {
+          apple_music_url?: string | null
+          avatar_url?: string | null
+          bio?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          id?: string
+          instagram_url?: string | null
+          spotify_url?: string | null
+          stage_name: string
+          total_followers?: number | null
+          total_subscribers?: number | null
+          updated_at?: string
+          user_id: string
+          youtube_url?: string | null
+        }
+        Update: {
+          apple_music_url?: string | null
+          avatar_url?: string | null
+          bio?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          id?: string
+          instagram_url?: string | null
+          spotify_url?: string | null
+          stage_name?: string
+          total_followers?: number | null
+          total_subscribers?: number | null
+          updated_at?: string
+          user_id?: string
+          youtube_url?: string | null
+        }
+        Relationships: []
+      }
+      song_analytics: {
+        Row: {
+          created_at: string
+          id: string
+          plays_last_30_days: number | null
+          plays_last_7_days: number | null
+          song_id: string
+          total_comments: number | null
+          total_likes: number | null
+          total_plays: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          plays_last_30_days?: number | null
+          plays_last_7_days?: number | null
+          song_id: string
+          total_comments?: number | null
+          total_likes?: number | null
+          total_plays?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          plays_last_30_days?: number | null
+          plays_last_7_days?: number | null
+          song_id?: string
+          total_comments?: number | null
+          total_likes?: number | null
+          total_plays?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "song_analytics_song_id_fkey"
+            columns: ["song_id"]
+            isOneToOne: true
+            referencedRelation: "songs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      songs: {
+        Row: {
+          artist_id: string
+          audio_url: string
+          category: string | null
+          comment_limit_count: number | null
+          comment_limit_type: string | null
+          cover_image_url: string | null
+          created_at: string
+          description: string | null
+          duration: number | null
+          featured_artists: string[] | null
+          genre: string | null
+          id: string
+          is_draft: boolean | null
+          is_published: boolean | null
+          is_scheduled: boolean | null
+          lyrics: string | null
+          published_at: string | null
+          scheduled_release_at: string | null
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          artist_id: string
+          audio_url: string
+          category?: string | null
+          comment_limit_count?: number | null
+          comment_limit_type?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          featured_artists?: string[] | null
+          genre?: string | null
+          id?: string
+          is_draft?: boolean | null
+          is_published?: boolean | null
+          is_scheduled?: boolean | null
+          lyrics?: string | null
+          published_at?: string | null
+          scheduled_release_at?: string | null
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          artist_id?: string
+          audio_url?: string
+          category?: string | null
+          comment_limit_count?: number | null
+          comment_limit_type?: string | null
+          cover_image_url?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          featured_artists?: string[] | null
+          genre?: string | null
+          id?: string
+          is_draft?: boolean | null
+          is_published?: boolean | null
+          is_scheduled?: boolean | null
+          lyrics?: string | null
+          published_at?: string | null
+          scheduled_release_at?: string | null
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "songs_artist_id_fkey"
+            columns: ["artist_id"]
+            isOneToOne: false
+            referencedRelation: "artist_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "user" | "artist" | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +351,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["user", "artist", "admin"],
+    },
   },
 } as const
