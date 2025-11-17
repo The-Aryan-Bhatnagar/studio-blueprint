@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { Mic2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 const ArtistSignup = () => {
   const [name, setName] = useState("");
@@ -15,13 +16,25 @@ const ArtistSignup = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSignup = (e: React.FormEvent) => {
+  const { signUp } = useAuth();
+
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Artist Account Created",
-      description: "Welcome to MusicFlow!",
-    });
-    navigate("/artist/dashboard");
+    const { error } = await signUp(email, password, stageName);
+    
+    if (error) {
+      toast({
+        title: "Signup Failed",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Artist Account Created",
+        description: "Welcome! Please check your email to verify your account.",
+      });
+      navigate("/artist/dashboard");
+    }
   };
 
   return (
