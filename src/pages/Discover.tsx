@@ -34,7 +34,7 @@ const Discover = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
         <div className="relative h-full flex flex-col justify-center px-12">
           <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            green box
+            Discover Amazing Artists
           </h1>
           <p className="text-xl text-muted-foreground mb-6 max-w-2xl">
             Connect with talented artists and stream their music from around the world
@@ -141,7 +141,7 @@ const Discover = () => {
 
       {/* Ad Banner */}
       <section className="bg-gradient-primary rounded-2xl p-8 text-center">
-        <h3 className="text-2xl font-bold mb-2">Join MusicFlow Community</h3>
+        <h3 className="text-2xl font-bold mb-2">Join GreenBox Community</h3>
         <p className="text-lg mb-4 opacity-90">
           Connect with artists, discover new music, and be part of the community
         </p>
