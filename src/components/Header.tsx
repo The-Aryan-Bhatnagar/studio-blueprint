@@ -21,8 +21,8 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-card border-b border-border px-6 flex items-center gap-6 z-50">
-      {/* Logo */}
-      <Link to="/" className="flex items-center gap-2">
+      {/* Logo - Links to Discover */}
+      <Link to="/discover" className="flex items-center gap-2">
         <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
           <Music className="w-6 h-6" />
         </div>
