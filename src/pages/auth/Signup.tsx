@@ -18,7 +18,7 @@ const Signup = () => {
     e.preventDefault();
     toast({
       title: "Account Created",
-      description: "Welcome to MusicFlow!",
+      description: "Welcome to GreenBox!",
     });
     navigate("/");
   };
@@ -31,7 +31,7 @@ const Signup = () => {
             <Music className="w-7 h-7" />
           </div>
           <span className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            MusicFlow
+            GreenBox
           </span>
         </div>
 
