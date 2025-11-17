@@ -34,7 +34,7 @@ const Discover = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
         <div className="relative h-full flex flex-col justify-center px-12">
           <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Discover Amazing Artists
+            green box
           </h1>
           <p className="text-xl text-muted-foreground mb-6 max-w-2xl">
             Connect with talented artists and stream their music from around the world
