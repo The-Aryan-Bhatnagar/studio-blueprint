@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PlayerProvider } from "./contexts/PlayerContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Discover from "./pages/Discover";
 import Search from "./pages/Search";
@@ -16,6 +17,7 @@ import ArtistProfile from "./pages/ArtistProfile";
 import ArtistDashboard from "./pages/ArtistDashboard";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
+import VerifyOTP from "./pages/auth/VerifyOTP";
 import ArtistLogin from "./pages/artist/ArtistLogin";
 import ArtistSignup from "./pages/artist/ArtistSignup";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -34,20 +36,22 @@ const App = () => (
             <Sonner />
             <Layout>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/discover" element={<Discover />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/library" element={<Library />} />
-                <Route path="/community" element={<Community />} />
-                <Route path="/events" element={<Events />} />
-                <Route path="/artist" element={<ArtistProfile />} />
-                <Route path="/artist/dashboard" element={<ArtistDashboard />} />
                 <Route path="/auth/login" element={<Login />} />
                 <Route path="/auth/signup" element={<Signup />} />
+                <Route path="/auth/verify-otp" element={<VerifyOTP />} />
                 <Route path="/artist/login" element={<ArtistLogin />} />
                 <Route path="/artist/signup" element={<ArtistSignup />} />
                 <Route path="/admin/login" element={<AdminLogin />} />
-                <Route path="/admin" element={<AdminDashboard />} />
+                
+                <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                <Route path="/discover" element={<ProtectedRoute><Discover /></ProtectedRoute>} />
+                <Route path="/search" element={<ProtectedRoute><Search /></ProtectedRoute>} />
+                <Route path="/library" element={<ProtectedRoute><Library /></ProtectedRoute>} />
+                <Route path="/community" element={<ProtectedRoute><Community /></ProtectedRoute>} />
+                <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
+                <Route path="/artist" element={<ProtectedRoute><ArtistProfile /></ProtectedRoute>} />
+                <Route path="/artist/dashboard" element={<ProtectedRoute><ArtistDashboard /></ProtectedRoute>} />
+                <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Layout>
