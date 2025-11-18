@@ -13,6 +13,7 @@ import Search from "./pages/Search";
 import Library from "./pages/Library";
 import Community from "./pages/Community";
 import Events from "./pages/Events";
+import UserProfile from "./pages/UserProfile";
 import ArtistProfile from "./pages/ArtistProfile";
 import ArtistDashboard from "./pages/ArtistDashboard";
 import Login from "./pages/auth/Login";
@@ -47,12 +48,13 @@ const App = () => (
                 <Route path="/artist/signup" element={<ArtistSignup />} />
                 <Route path="/admin/login" element={<AdminLogin />} />
                 
-                <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-                <Route path="/discover" element={<ProtectedRoute><Discover /></ProtectedRoute>} />
-                <Route path="/search" element={<ProtectedRoute><Search /></ProtectedRoute>} />
-                <Route path="/library" element={<ProtectedRoute><Library /></ProtectedRoute>} />
-                <Route path="/community" element={<ProtectedRoute><Community /></ProtectedRoute>} />
-                <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
+          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/discover" element={<ProtectedRoute><Discover /></ProtectedRoute>} />
+          <Route path="/search" element={<ProtectedRoute><Search /></ProtectedRoute>} />
+          <Route path="/library" element={<ProtectedRoute><Library /></ProtectedRoute>} />
+          <Route path="/community" element={<ProtectedRoute><Community /></ProtectedRoute>} />
+          <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
                 <Route path="/artist" element={<ProtectedRoute><ArtistProfile /></ProtectedRoute>} />
                 <Route path="/artist/dashboard" element={<ProtectedRoute><ArtistDashboard /></ProtectedRoute>} />
                 <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import SongCard from "@/components/SongCard";
 import ArtistCard from "@/components/ArtistCard";
 import { Button } from "@/components/ui/button";
@@ -6,13 +7,35 @@ import { sampleSongs } from "@/lib/sampleSongs";
 import { sampleArtists } from "@/lib/sampleArtists";
 import { usePlayer } from "@/contexts/PlayerContext";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Home = () => {
   const { playSong, setQueue } = usePlayer();
   const { toast } = useToast();
-  
-  // Sample user name - in real app would come from auth
-  const userName = "Guest";
+  const [userName, setUserName] = useState("Guest");
+
+  useEffect(() => {
+    loadUserName();
+  }, []);
+
+  const loadUserName = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("full_name")
+          .eq("user_id", user.id)
+          .single();
+        
+        if (profile?.full_name) {
+          setUserName(profile.full_name);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading user name:", error);
+    }
+  };
   
   const topMixes = sampleSongs.slice(0, 4);
   const popularArtists = sampleArtists.slice(0, 4);

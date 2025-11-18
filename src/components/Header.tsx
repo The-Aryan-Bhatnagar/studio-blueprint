@@ -102,7 +102,7 @@ const Header = () => {
         <Button variant="ghost" size="icon" className="rounded-full">
           <Bell className="w-5 h-5" />
         </Button>
-        <Link to="/admin/login">
+        <Link to="/profile">
           <Button variant="ghost" size="icon" className="rounded-full">
             <User className="w-5 h-5" />
           </Button>
