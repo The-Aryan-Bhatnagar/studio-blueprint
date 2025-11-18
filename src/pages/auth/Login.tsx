@@ -122,6 +122,12 @@ const Login = () => {
                 />
               </div>
 
+              <div className="flex items-center justify-between mb-4">
+                <Link to="/auth/forgot-password" className="text-sm text-primary hover:underline">
+                  Forgot Password?
+                </Link>
+              </div>
+
               <Button type="submit" disabled={loading} className="w-full bg-gradient-primary">
                 {loading ? "Logging in..." : "Login with Email"}
               </Button>
